@@ -1,15 +1,30 @@
+import type { Metadata } from "next"
 import { Geist, Geist_Mono } from "next/font/google"
 
 import "./globals.css"
-import { ThemeProvider } from "@/components/theme-provider"
-import { cn } from "@/lib/utils";
+import { cn } from "@/lib/utils"
 
-const geist = Geist({subsets:['latin'],variable:'--font-sans'})
+const geist = Geist({ subsets: ["latin"], variable: "--font-sans" })
 
 const fontMono = Geist_Mono({
   subsets: ["latin"],
   variable: "--font-mono",
 })
+
+export const metadata: Metadata = {
+  title: "Troxler Electronic Laboratories | Leader in Construction Testing Equipment",
+  description:
+    "Troxler Electronic Laboratories – over 65 years delivering precision nuclear density gauges and asphalt testing equipment for geotech and road construction worldwide.",
+  keywords: [
+    "nuclear density gauge",
+    "construction testing equipment",
+    "asphalt testing",
+    "soil density",
+    "Troxler",
+    "EGauge",
+    "NCAT oven",
+  ],
+}
 
 export default function RootLayout({
   children,
@@ -19,12 +34,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      suppressHydrationWarning
       className={cn("antialiased", fontMono.variable, "font-sans", geist.variable)}
     >
-      <body>
-        <ThemeProvider>{children}</ThemeProvider>
-      </body>
+      <body>{children}</body>
     </html>
   )
 }
