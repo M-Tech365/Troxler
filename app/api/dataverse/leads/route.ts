@@ -38,6 +38,10 @@ export async function POST(request: NextRequest) {
       email: body.email!.trim(),
       company: body.company?.trim(),
       phone: body.phone?.trim(),
+      address: body.address?.trim(),
+      city: body.city?.trim(),
+      state: body.state?.trim(),
+      postalCode: body.postalCode?.trim(),
       inquiry: body.inquiry!.trim(),
       message: body.message!.trim(),
     })

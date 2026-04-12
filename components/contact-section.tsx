@@ -2,12 +2,17 @@
 
 import { useState } from "react"
 import { MapPin, Phone, Mail, Clock, Send, Globe } from "lucide-react"
+import { AddressAutocomplete, type AddressSuggestion } from "./address-autocomplete"
 
 const initialFormData = {
   name: "",
   email: "",
   company: "",
   phone: "",
+  address: "",
+  city: "",
+  state: "",
+  postalCode: "",
   inquiry: "product",
   message: "",
 }
@@ -219,6 +224,71 @@ export function ContactSection() {
                     value={formData.phone}
                     onChange={handleChange}
                     placeholder="+1 (919) 555-0100"
+                    className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-[#212a65] focus:ring-1 focus:ring-[#212a65] transition-colors"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-xs font-semibold text-gray-600 uppercase tracking-wide mb-1.5">
+                  Address
+                </label>
+                <AddressAutocomplete
+                  value={formData.address}
+                  onChange={(val) =>
+                    setFormData((prev) => ({ ...prev, address: val }))
+                  }
+                  onSelect={(s: AddressSuggestion) =>
+                    setFormData((prev) => ({
+                      ...prev,
+                      address: s.street || s.address,
+                      city: s.city,
+                      state: s.state,
+                      postalCode: s.postalCode,
+                    }))
+                  }
+                  placeholder="Start typing an address..."
+                  className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-[#212a65] focus:ring-1 focus:ring-[#212a65] transition-colors"
+                />
+              </div>
+
+              <div className="grid sm:grid-cols-3 gap-4">
+                <div>
+                  <label className="block text-xs font-semibold text-gray-600 uppercase tracking-wide mb-1.5">
+                    City
+                  </label>
+                  <input
+                    type="text"
+                    name="city"
+                    value={formData.city}
+                    onChange={handleChange}
+                    placeholder="Durham"
+                    className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-[#212a65] focus:ring-1 focus:ring-[#212a65] transition-colors"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-semibold text-gray-600 uppercase tracking-wide mb-1.5">
+                    State
+                  </label>
+                  <input
+                    type="text"
+                    name="state"
+                    value={formData.state}
+                    onChange={handleChange}
+                    placeholder="NC"
+                    className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-[#212a65] focus:ring-1 focus:ring-[#212a65] transition-colors"
+                  />
+                </div>
+                <div>
+                  <label className="block text-xs font-semibold text-gray-600 uppercase tracking-wide mb-1.5">
+                    Zip Code
+                  </label>
+                  <input
+                    type="text"
+                    name="postalCode"
+                    value={formData.postalCode}
+                    onChange={handleChange}
+                    placeholder="27713"
                     className="w-full border border-gray-200 rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:border-[#212a65] focus:ring-1 focus:ring-[#212a65] transition-colors"
                   />
                 </div>

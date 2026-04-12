@@ -17,6 +17,10 @@ export type LeadPayload = {
   email: string
   company?: string
   phone?: string
+  address?: string
+  city?: string
+  state?: string
+  postalCode?: string
   inquiry: string
   message: string
 }
@@ -150,6 +154,10 @@ export async function createLead(payload: LeadPayload) {
     companyname: payload.company?.trim() || undefined,
     emailaddress1: payload.email.trim(),
     telephone1: payload.phone?.trim() || undefined,
+    address1_line1: payload.address?.trim() || undefined,
+    address1_city: payload.city?.trim() || undefined,
+    address1_stateorprovince: payload.state?.trim() || undefined,
+    address1_postalcode: payload.postalCode?.trim() || undefined,
     description: descriptionParts.join("\n\n"),
   }
 
