@@ -159,6 +159,7 @@ export async function createLead(payload: LeadPayload) {
     address1_stateorprovince: payload.state?.trim() || undefined,
     address1_postalcode: payload.postalCode?.trim() || undefined,
     description: descriptionParts.join("\n\n"),
+    trx_leadsourcechoice: 933540000,
   }
 
   return dataverseRequest("/api/data/v9.2/leads", {
